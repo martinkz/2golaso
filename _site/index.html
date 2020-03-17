@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Golaso</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="Golaso">
+    <meta property="og:description" content="We’ve spent a decade partnering with brands to create thriving communities, built from nothing but pure social spark.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="Golaso">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2'),
+            url('fonts/HelveticaNeue-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+			font-display: fallback;
+        }
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2'),
+            url('fonts/HelveticaNeue-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+			font-display: fallback;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        html, body {
+            height: 100%;
+            position: relative;
+            margin: 0;
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-family: 'Helvetica Neue', Arial, serif;
+            background-color: #000000;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        @media(max-width: 500px) {
+            html, body {
+                font-size: 18px;
+            }
+        }
+
+        .frame {
+            position: relative;
+            overflow: hidden;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5vw 8vw;
+            text-align: center;
+            color: white;
+        }
+
+        .frame header {
+            position: relative;
+        }
+
+        .main-title {
+            width: 76vw;
+            max-width: 1200px;
+            position: absolute;
+            margin: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-transform: uppercase;
+            font-size: 38px;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+			text-shadow: 0 0 3px rgba(0,0,0,0.15);
+            transform-origin: center center;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+
+        footer {
+            width: 76vw;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @media screen and (orientation:portrait) {
+            header, footer {
+                margin-top: auto;
+            }
+        }
+
+        .links a {
+            font-size: 12px;
+            color: currentcolor;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        .video-background {
+            position: relative;
+            width: 50vw;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-background::before {
+            content: "";
+            display: block;
+            padding-top: 75%;
+            width: 100%;
+        }
+
+        .video-background iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+<article class="frame">
+    <main>
+        <header>
+            <h1 class="main-title"><span>G</span><span>o</span><span>l</span><span>a</span><span>s</span><span>o</span></h1>
+            <div id="video-background" class="video-background" data-vimeo-background="1" data-vimeo-loop="1"></div>
+        </header>
+        <footer>
+            <nav class="links">
+                <a href="mailto:hello@golaso.co">Email</a>
+                <a href="https://golaso.co/shop">Shop</a>
+                <a href="https://www.instagram.com/golaso.co/" target="_blank">Insta</a>
+            </nav>
+        </footer>
+    </main>
+    
+</article>
+
+
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script>
+    var vid_url = 'https://player.vimeo.com/video/390856308';
+
+    // function introTextFadeIn() {
+    //     [].forEach.call(document.querySelectorAll('[data-seq]'), function (el) {
+    //         var idx = el.getAttribute('data-seq');
+    //         setTimeout(function () {
+    //             el.classList.add('fadeIn');
+    //         }, idx*500)
+    //     });
+    // }
+
+    document.getElementById('video-background').setAttribute('data-vimeo-url', vid_url);
+
+    var player = new Vimeo.Player('video-background');
+
+    player.setVolume(0);
+    player.setLoop(true);
+
+    // player.ready().then(function () {
+    //     player.play().then(function () {
+    //         setTimeout(function () {
+    //             introTextFadeIn();
+    //         }, 1000);
+    //     });
+    // });
+
+    // setTimeout(function () {
+    //     introTextFadeIn();
+    // }, 500);
+
+    //fitvids('.video-background');
+</script>
+
+
+</body>
+</html>
