@@ -1,19 +1,22 @@
 @font-face {
     font-family: 'Helvetica Neue';
-    src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2'),
-    url('fonts/HelveticaNeue-Bold.woff') format('woff');
+    src: url('../fonts/HelveticaNeue-Bold.woff2') format('woff2'),
+    url('../fonts/HelveticaNeue-Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Helvetica Neue';
-    src: url('fonts/HelveticaNeue-Bold.woff2') format('woff2'),
-    url('fonts/HelveticaNeue-Bold.woff') format('woff');
+    src: url('../fonts/HelveticaNeue-Bold.woff2') format('woff2'),
+    url('../fonts/HelveticaNeue-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: fallback;
 }
+
+$grey: #777777;
+$page-width: 880px;
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -25,9 +28,9 @@ html, body {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 18px;
     font-family: 'Helvetica Neue', Arial, serif;
-    background-color: #000000;
+    background-color: #ffffff;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -35,63 +38,118 @@ html, body {
 
 @media(max-width: 500px) {
     html, body {
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
-.frame {
-    position: relative;
-    overflow: hidden;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.wrap {
+    max-width: $page-width;
+    margin: 0 auto;
     padding: 5vw 8vw;
-    text-align: center;
-    color: white;
+    color: #222222;
 }
 
-.frame header {
-    position: relative;
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .main-title {
-    width: 76vw;
-    max-width: 1200px;
-    position: absolute;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    margin: 3rem 0 2rem;
+    font-size: 1.9rem;
+    line-height: 1.2;
     text-transform: uppercase;
-    font-size: 38px;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    text-shadow: 0 0 3px rgba(0,0,0,0.15);
-    transform-origin: center center;
-    opacity: 0;
-    animation: fadeIn 0.3s ease forwards;
+    @media(max-width: 600px) {
+        font-size: 1.5rem;
+    }
+}
+
+.modal-links {
+    margin-top: 5vw;
+    text-align: right;
+
+    .modal-link-item {
+        display: block;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #999;
+        font-size: 2.4rem;
+        transition: all 0.25s ease;
+        
+        @media(max-width: 600px) {
+            font-size: 2rem;
+        }
+
+        &:hover, &:focus {
+            color: white;
+        }
+    }
 }
 
 
 main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
+    counter-reset: items;
+
+    &:before {
+        content: ">";
+        display: block;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+    }
 }
 
+.articles-list {
+    margin-top: 2rem;
+}
+
+article.item {
+
+    .item-title-link {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #555;
+        font-size: 1.8rem;
+        transition: all 0.25s ease;
+
+        &:hover, &:focus {
+            color: #111;
+        }
+
+        @media(max-width: 600px) {
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            margin: 0.5rem 0;
+        }
+
+        h2:before {
+            display: inline-block;
+            counter-increment: items;
+            content: "0" counter(items);
+            margin-right: 1.2rem;
+            vertical-align: text-top;
+            color: $grey;
+            font-size: 50%;
+        }
+    }
+
+}
 
 footer {
-    width: 76vw;
-    max-width: 1200px;
     margin-top: 20px;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
 }
 
 .links {
+    max-width: $page-width;
+    margin: 0 auto;
+    padding: 1rem 8vw;
+    background: white;
     display: flex;
     justify-content: space-between;
     opacity: 0;
@@ -105,12 +163,122 @@ footer {
 }
 
 .links a {
-    font-size: 12px;
+    font-size: 14px;
     color: currentcolor;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+// TOGGLE
+
+.togglable {
+	transition: max-height 0.3s cubic-bezier(1,0,1,0),
+				visibility 0s ease-in;
+	max-height: 9000px;
+	overflow: hidden;
+}
+
+.togglable[aria-hidden='true'] {
+	transition: max-height 0.3s cubic-bezier(0,1,0,1),
+				visibility 0s ease-in 0.3s;
+	visibility: hidden; /* for A11y */
+	max-height: 0;
+}
 
 
+// HAMBURGER
+
+$hamburger__height: 36px;
+$hamburger__width: 36px;
+$hamburger__layer__height: 6px;
+$hamburger__layer__gap: 4px;
+$hamburger__colour: #222;
+
+.hamburger {
+    position: relative;
+    padding: 0;
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    width: $hamburger__height;
+    height: $hamburger__width;
+    z-index: 1000;
+
+    &__inner { 
+        display: block;
+        position: absolute;
+        top: 0;
+        width: $hamburger__width;
+        height: $hamburger__layer__height; 
+        margin-top: $hamburger__layer__height + $hamburger__layer__gap;
+        background-color: $hamburger__colour;
+        transition: background-color 0.25s ease-in-out;
+
+        &:before, &:after { 
+            display: block; 
+            position: absolute; 
+            content: "";
+            width: $hamburger__width; 
+            height: $hamburger__layer__height; 
+            background: $hamburger__colour;
+            transition: all 0.25s ease-in-out; 
+        }
+        &:before {
+            top: -($hamburger__layer__height + $hamburger__layer__gap);
+        }
+        &:after {
+            top: $hamburger__layer__height + $hamburger__layer__gap;
+        }
+    }
+
+    &--open &__inner {
+        background-color: transparent;
+
+        &:before, &:after {
+            top: 0;
+            background-color: white;
+        }
+        &:before {
+            transform: rotate(-45deg);
+        }
+        &:after {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+
+// MODAL
+
+.modal {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    background-color: black;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    will-change: transform, opacity, background-color;
+
+    &--visible {
+        visibility: visible;
+        opacity: 1;
+        z-index: 100;
+    }
+
+    &--visible .modal__inner {
+        transform: scale(1);
+    }
+}
+
+
+.u-caps {
+    text-transform: uppercase;
+}
