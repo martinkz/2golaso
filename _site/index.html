@@ -19,25 +19,23 @@
 </head>
 
 <body>
-    <div class="wrap">
+    <div class="wrap contains-nav-bg">
+        <nav class="main-nav">
+            <a href="/"><img class="main-logo-fluid" src="img/golaso-logo.png" alt="Golaso"></a>
+            <button id="js-hamburger" class="hamburger" aria-label="Open Menu" aria-controls="modal-nav" aria-expanded="false">
+                <div class="hamburger__inner"></div>
+            </button>
+        </nav>
         <header class="main-header">
-            <nav class="main-nav">
-                <img src="img/golaso-logo.png" alt="Golaso">
-
-                <button id="js-hamburger" class="hamburger" aria-label="Open Menu" aria-controls="modal-nav" aria-expanded="false">
-                    <div class="hamburger__inner"></div>
-                </button>
-
-                <div id="modal-nav" class="modal" role="dialog" aria-label="Main Menu">
+            <div id="modal-nav" class="modal" role="dialog" aria-label="Main Menu">
                     <div class="wrap">
-                        <img src="img/golaso-logo-white.png" alt="Golaso">
+                        <!-- <img class="main-logo-fluid" src="img/golaso-logo-white.png" alt="Golaso"> -->
                         <div class="modal-links">
                             <a class="modal-link-item" href="#">Services on Offer</a>
                             <a class="modal-link-item" href="#">Projects</a>
                         </div>
                     </div>
                 </div>
-            </nav>
             <h1 class="main-title">Golaso is a football studio, born on the terraces and proudly international in outlook</h1>
         </header>
         <main>
@@ -45,7 +43,9 @@
 
             <div class="articles-list">
                 <article class="item">
-                    <a class="item-title-link" href="#toggle1" data-a11y-toggle="toggle1"><h2>Merch</h2></a>
+                    <a class="item-title-link" href="#toggle1" data-a11y-toggle="toggle1">
+                        <h2>Merch <div class="expand-icon"></div></h2>
+                    </a>
                     <div id="toggle1" class="item-body togglable">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere erat leo, gravida viverra nisi viverra tempus. In a lacus at magna efficitur viverra. Nam dictum est quam, eu dictum odio consequat quis. Aenean sollicitudin tempor convallis. Nunc ac interdum dolor, at venenatis lorem. Nullam vel tristique nisl. Maecenas consectetur metus eget gravida vehicula. Duis sed sapien tristique, fringilla ligula in, feugiat turpis. Sed a nulla sapien. Donec eu dolor sapien. Duis ut est erat. In non enim massa. </p>
                         <p>Aenean elementum nulla at orci dapibus, vel elementum eros ultrices. Integer pretium odio tellus, at imperdiet odio rutrum id. In eros turpis, cursus non dictum congue, tempor quis massa. </p>
@@ -53,7 +53,9 @@
                 </article>
     
                 <article class="item">
-                    <a class="item-title-link" href="#toggle2" data-a11y-toggle="toggle2"><h2>Partnerships</h2></a>
+                    <a class="item-title-link" href="#toggle2" data-a11y-toggle="toggle2">
+                        <h2>Partnerships <div class="expand-icon"></div></h2>
+                    </a>
                     <div id="toggle2" class="item-body togglable">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere erat leo, gravida viverra nisi viverra tempus. In a lacus at magna efficitur viverra. Nam dictum est quam, eu dictum odio consequat quis. Aenean sollicitudin tempor convallis. Nunc ac interdum dolor, at venenatis lorem. Nullam vel tristique nisl. Maecenas consectetur metus eget gravida vehicula. Duis sed sapien tristique, fringilla ligula in, feugiat turpis. Sed a nulla sapien. Donec eu dolor sapien. Duis ut est erat. In non enim massa. </p>
                         <p>Aenean elementum nulla at orci dapibus, vel elementum eros ultrices. Integer pretium odio tellus, at imperdiet odio rutrum id. In eros turpis, cursus non dictum congue, tempor quis massa. </p>
@@ -61,7 +63,9 @@
                 </article>
 
                 <article class="item">
-                    <a class="item-title-link" href="#toggle3" data-a11y-toggle="toggle3"><h2>Social</h2></a>
+                    <a class="item-title-link" href="#toggle3" data-a11y-toggle="toggle3">
+                        <h2>Social <div class="expand-icon"></div></h2>
+                    </a>
                     <div id="toggle3" class="item-body togglable">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere erat leo, gravida viverra nisi viverra tempus. In a lacus at magna efficitur viverra. Nam dictum est quam, eu dictum odio consequat quis. Aenean sollicitudin tempor convallis. Nunc ac interdum dolor, at venenatis lorem. Nullam vel tristique nisl. Maecenas consectetur metus eget gravida vehicula. Duis sed sapien tristique, fringilla ligula in, feugiat turpis. Sed a nulla sapien. Donec eu dolor sapien. Duis ut est erat. In non enim massa. </p>
                         <p>Aenean elementum nulla at orci dapibus, vel elementum eros ultrices. Integer pretium odio tellus, at imperdiet odio rutrum id. In eros turpis, cursus non dictum congue, tempor quis massa. </p>
@@ -87,11 +91,13 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-a11y-toggle]"), function (item) {
         item.addEventListener('click', function(e){
             e.preventDefault();
+            this.querySelector('.expand-icon').classList.toggle('expanded');
         });
     });
 
     var hamburger = document.querySelector('#js-hamburger');
     var modal = document.querySelector('.modal');
+    var logo = document.querySelector('.main-logo-fluid');
     var menuOpen = false;
 
     hamburger.addEventListener('click', function(){
@@ -100,7 +106,11 @@
         if (!menuOpen) {
             this.setAttribute('aria-label', 'Close Menu');
             this.setAttribute('aria-expanded', 'true');
+            logo.style.filter = 'invert(1)';
             menuOpen = true;
+        } else {
+            menuOpen = false;
+            logo.style.filter = 'invert(0)';
         }
     });
     </script>

@@ -39,8 +39,28 @@ html, body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-size: 18px;
+  font-size: 2vw;
   font-family: 'Helvetica Neue', Arial, serif;
   background-color: #ffffff;
+  font-size: 9px;
+}
+
+@media (min-width: 320px) {
+  html, body {
+    font-size: calc(2.00893vw + 2.57143px);
+  }
+}
+
+@media (min-width: 768px) {
+  html, body {
+    font-size: calc(1.93762vw + 3.11909px);
+  }
+}
+
+@media (min-width: 5000px) {
+  html, body {
+    font-size: 100px;
+  }
 }
 
 *, *:before, *:after {
@@ -48,17 +68,23 @@ html, body {
           box-sizing: inherit;
 }
 
-@media (max-width: 500px) {
-  html, body {
-    font-size: 14px;
-  }
+.wrap {
+  max-width: 94%;
+  margin: 0 auto;
+  padding: 3vw 8vw 5vw;
+  color: #222222;
 }
 
-.wrap {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 5vw 8vw;
-  color: #222222;
+.contains-nav-bg:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: calc(2rem + 50px);
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .main-nav {
@@ -71,23 +97,41 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 1rem 0;
+  z-index: 100;
+}
+
+.main-logo-fluid {
+  width: 36px;
+  height: auto;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 200px) {
+  .main-logo-fluid {
+    width: calc(1.75vw + 32.5px);
+  }
+}
+
+@media (min-width: 5000px) {
+  .main-logo-fluid {
+    width: 120px;
+  }
 }
 
 .main-title {
-  margin: 3rem 0 2rem;
+  margin: 2rem 0 2rem;
   font-size: 1.9rem;
   line-height: 1.2;
   text-transform: uppercase;
 }
 
-@media (max-width: 600px) {
-  .main-title {
-    font-size: 1.5rem;
-  }
-}
-
 .modal-links {
-  margin-top: 5vw;
+  margin-top: 6rem;
   text-align: right;
 }
 
@@ -99,12 +143,6 @@ html, body {
   font-size: 2.4rem;
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
-}
-
-@media (max-width: 600px) {
-  .modal-links .modal-link-item {
-    font-size: 2rem;
-  }
 }
 
 .modal-links .modal-link-item:hover, .modal-links .modal-link-item:focus {
@@ -135,18 +173,18 @@ article.item .item-title-link {
   transition: all 0.25s ease;
 }
 
-article.item .item-title-link:hover, article.item .item-title-link:focus {
-  color: #111;
-}
-
-@media (max-width: 600px) {
-  article.item .item-title-link {
-    font-size: 1.5rem;
-  }
-}
-
 article.item .item-title-link h2 {
-  margin: 0.5rem 0;
+  margin: 1.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 1;
 }
 
 article.item .item-title-link h2:before {
@@ -157,6 +195,20 @@ article.item .item-title-link h2:before {
   vertical-align: text-top;
   color: #777777;
   font-size: 50%;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+article.item .item-title-link:hover, article.item .item-title-link:focus {
+  color: #111;
+}
+
+article.item .item-title-link:hover h2:before, article.item .item-title-link:focus h2:before {
+  color: currentColor;
+}
+
+article.item .item-body {
+  padding: 0 3rem;
 }
 
 footer {
@@ -168,7 +220,7 @@ footer {
 }
 
 .links {
-  max-width: 880px;
+  max-width: 94%;
   margin: 0 auto;
   padding: 1rem 8vw;
   background: white;
@@ -181,12 +233,6 @@ footer {
   opacity: 0;
   -webkit-animation: fadeIn 0.3s ease forwards;
           animation: fadeIn 0.3s ease forwards;
-}
-
-@media screen and (orientation: portrait) {
-  header, footer {
-    margin-top: auto;
-  }
 }
 
 .links a {
@@ -219,18 +265,18 @@ footer {
   background: none;
   border: none;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
-  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
 }
 
 .hamburger__inner {
   display: block;
   position: absolute;
   top: 0;
-  width: 36px;
-  height: 6px;
-  margin-top: 10px;
+  width: 40px;
+  height: 8px;
+  margin-top: 13px;
   background-color: #222;
   -webkit-transition: background-color 0.25s ease-in-out;
   transition: background-color 0.25s ease-in-out;
@@ -240,19 +286,19 @@ footer {
   display: block;
   position: absolute;
   content: "";
-  width: 36px;
-  height: 6px;
+  width: 40px;
+  height: 8px;
   background: #222;
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
 
 .hamburger__inner:before {
-  top: -10px;
+  top: -13px;
 }
 
 .hamburger__inner:after {
-  top: 10px;
+  top: 13px;
 }
 
 .hamburger--open .hamburger__inner {
@@ -274,13 +320,59 @@ footer {
           transform: rotate(45deg);
 }
 
-.modal {
+.expand-icon {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  display: inline-block;
+  margin-left: 0.8rem;
+}
+
+.expand-icon::before, .expand-icon::after {
+  content: " ";
+  width: 32px;
+  height: 6px;
+  background-color: currentColor;
+  display: block;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: -webkit-transform 0.15s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -webkit-transform 0.15s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: transform 0.15s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: transform 0.15s cubic-bezier(0.42, 0, 0.58, 1), -webkit-transform 0.15s cubic-bezier(0.42, 0, 0.58, 1);
+  opacity: 1;
+  border-radius: 2px;
+}
+
+.expand-icon::before {
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.expand-icon::after {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.expand-icon.expanded::before {
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.expand-icon.expanded::after {
+  -webkit-transform: translate(-50%, -50%) rotate(-90deg);
+          transform: translate(-50%, -50%) rotate(-90deg);
+  opacity: 0;
+}
+
+.modal {
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   top: 0;
-  z-index: 100;
+  z-index: 10;
   background-color: black;
   visibility: hidden;
   opacity: 0;

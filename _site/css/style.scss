@@ -1,22 +1,8 @@
-@font-face {
-    font-family: 'Helvetica Neue';
-    src: url('../fonts/HelveticaNeue-Bold.woff2') format('woff2'),
-    url('../fonts/HelveticaNeue-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: fallback;
-}
-@font-face {
-    font-family: 'Helvetica Neue';
-    src: url('../fonts/HelveticaNeue-Bold.woff2') format('woff2'),
-    url('../fonts/HelveticaNeue-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: fallback;
-}
+@import "partials/fonts";
+@import "partials/mixins";
 
 $grey: #777777;
-$page-width: 880px;
+$page-width: 94%;
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -29,44 +15,72 @@ html, body {
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
     font-size: 18px;
+    font-size: 2vw;
     font-family: 'Helvetica Neue', Arial, serif;
     background-color: #ffffff;
+
+    @include poly-fluid-sizing('font-size', (320px: 9px, 768px: 18px, 5000px: 100px));
 }
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
-@media(max-width: 500px) {
-    html, body {
-        font-size: 14px;
-    }
-}
+// @media(max-width: 500px) {
+//     html, body {
+//         font-size: 14px;
+//     }
+// }
 
 .wrap {
     max-width: $page-width;
     margin: 0 auto;
-    padding: 5vw 8vw;
+    padding: 3vw 8vw 5vw;
     color: #222222;
+}
+
+.contains-nav-bg {
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: calc(2rem + 50px);
+        background-color: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
 }
 
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 1rem 0;
+    z-index: 100;
+    // background-color: white;
+}
+
+.main-logo-fluid {
+    @include poly-fluid-sizing('width', (200px: 36px, 5000px: 120px));
+    height: auto;
+    transition: all 0.3s ease;
 }
 
 .main-title {
-    margin: 3rem 0 2rem;
+    margin: 2rem 0 2rem;
     font-size: 1.9rem;
     line-height: 1.2;
     text-transform: uppercase;
-    @media(max-width: 600px) {
-        font-size: 1.5rem;
-    }
+    // @media(max-width: 375px) {
+    //     font-size: 1.3rem;
+    // }
 }
 
 .modal-links {
-    margin-top: 5vw;
+    margin-top: 6rem;
     text-align: right;
 
     .modal-link-item {
@@ -77,9 +91,9 @@ html, body {
         font-size: 2.4rem;
         transition: all 0.25s ease;
         
-        @media(max-width: 600px) {
-            font-size: 2rem;
-        }
+        // @media(max-width: 375px) {
+        //     font-size: 2rem;
+        // }
 
         &:hover, &:focus {
             color: white;
@@ -112,16 +126,16 @@ article.item {
         font-size: 1.8rem;
         transition: all 0.25s ease;
 
-        &:hover, &:focus {
-            color: #111;
-        }
-
-        @media(max-width: 600px) {
-            font-size: 1.5rem;
-        }
+        // @media(max-width: 375px) {
+        //     font-size: 1.3rem;
+        // }
 
         h2 {
-            margin: 0.5rem 0;
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            line-height: 1;
         }
 
         h2:before {
@@ -132,7 +146,20 @@ article.item {
             vertical-align: text-top;
             color: $grey;
             font-size: 50%;
+            align-self: flex-start;
         }
+
+        
+        &:hover, &:focus {
+            color: #111;
+            h2:before {
+                color: currentColor;
+            }
+        }
+    }
+
+    .item-body {
+        padding: 0 3rem;
     }
 
 }
@@ -154,12 +181,6 @@ footer {
     justify-content: space-between;
     opacity: 0;
     animation: fadeIn 0.3s ease forwards;
-}
-
-@media screen and (orientation:portrait) {
-    header, footer {
-        margin-top: auto;
-    }
 }
 
 .links a {
@@ -189,10 +210,10 @@ footer {
 
 // HAMBURGER
 
-$hamburger__height: 36px;
-$hamburger__width: 36px;
-$hamburger__layer__height: 6px;
-$hamburger__layer__gap: 4px;
+$hamburger__height: 40px;
+$hamburger__width: 40px;
+$hamburger__layer__height: 8px;
+$hamburger__layer__gap: 5px;
 $hamburger__colour: #222;
 
 .hamburger {
@@ -205,7 +226,7 @@ $hamburger__colour: #222;
 
     width: $hamburger__height;
     height: $hamburger__width;
-    z-index: 1000;
+    z-index: 1;
 
     &__inner { 
         display: block;
@@ -250,16 +271,55 @@ $hamburger__colour: #222;
     }
 }
 
+// Expand icon
+
+
+.expand-icon {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    display: inline-block;
+    margin-left: 0.8rem;
+  }
+  .expand-icon::before, .expand-icon::after {
+    content: " ";
+    width: 32px;
+    height: 6px;
+    background-color: currentColor;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: transform 0.15s cubic-bezier(.42, 0, .58, 1);
+    opacity: 1;
+    border-radius: 2px;
+  }
+  .expand-icon::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  .expand-icon::after {
+    transform: translate(-50%, -50%);
+  }
+  
+  
+  .expand-icon.expanded::before {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  .expand-icon.expanded::after {
+    transform: translate(-50%, -50%) rotate(-90deg);
+    opacity: 0;
+  }
+
 
 // MODAL
 
 .modal {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
-    z-index: 100;
+    z-index: 10;
     background-color: black;
 
     visibility: hidden;
