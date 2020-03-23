@@ -1,0 +1,149 @@
+@import "partials/fonts";
+@import "partials/mixins";
+@import "partials/components";
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+html, body {
+    height: 100%;
+    position: relative;
+    margin: 0;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Arial, serif;
+    background-color: #000000;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+@media(max-width: 500px) {
+    html, body {
+        font-size: 18px;
+    }
+}
+
+// Updated styles
+
+.hamburger-index {
+    z-index: 11;
+    position: absolute;
+    top: 3vw;
+    right: 11vw;
+
+    .hamburger__inner { 
+        background-color: white;
+        &:before, &:after { 
+            background: white;
+        }
+    }
+}
+
+.modal-links {
+    .modal-link-item {
+        @include poly-fluid-sizing('font-size', (320px: 28px, 768px: 56px, 5000px: 150px));
+    }
+}
+
+
+.frame {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw 8vw;
+    text-align: center;
+    color: white;
+}
+
+.frame .header-index {
+    position: relative;
+}
+
+.main-title-home {
+    width: 76vw;
+    max-width: 1200px;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-transform: uppercase;
+    font-size: 38px;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 0 0 3px rgba(0,0,0,0.15);
+    transform-origin: center center;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+
+    @include poly-fluid-sizing('font-size', (320px: 22px, 1920px: 50px));
+}
+
+
+.main-index {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+.footer-index {
+    width: 76vw;
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.homepage-footer-links {
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@media screen and (orientation:portrait) {
+    .header-index, .footer-index {
+        margin-top: auto;
+    }
+}
+
+.homepage-footer-links a {
+    font-size: 14px;
+    color: currentcolor;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.video-background {
+    position: relative;
+    width: 50vw;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.video-background::before {
+    content: "";
+    display: block;
+    padding-top: 75%;
+    width: 100%;
+}
+
+.video-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
