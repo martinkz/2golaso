@@ -221,6 +221,10 @@ html, body {
   background: white;
 }
 
+.modal-links {
+  margin-top: calc(50px + 5vw);
+}
+
 .modal-links .modal-link-item {
   font-size: 28px;
 }
