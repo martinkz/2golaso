@@ -45,6 +45,8 @@ html, body {
 }
 
 .modal-links {
+    // margin-top: 10rem;
+
     .modal-link-item {
         @include poly-fluid-sizing('font-size', (320px: 28px, 768px: 56px, 5000px: 150px));
     }

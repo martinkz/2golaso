@@ -1,25 +1,27 @@
 // TOGGLE
 
 .togglable {
-	transition: max-height 0.3s cubic-bezier(1,0,1,0),
-				visibility 0s ease-in;
-	max-height: 9000px;
-	overflow: hidden;
+	// transition: max-height 0.3s cubic-bezier(1,0,1,0),
+	// 			visibility 0s ease-in;
+	// max-height: 9000px;
+    overflow: hidden;
+    height: auto;
 }
 
 .togglable[aria-hidden='true'] {
-	transition: max-height 0.3s cubic-bezier(0,1,0,1),
-				visibility 0s ease-in 0.3s;
+	// transition: max-height 0.3s cubic-bezier(0,1,0,1),
+	// 			visibility 0s ease-in 0.3s;
 	visibility: hidden; /* for A11y */
-	max-height: 0;
+    // max-height: 0;
+    height: 0;
 }
 
 
 // HAMBURGER
 
 $hamburger__height: 40px;
-$hamburger__width: 40px;
-$hamburger__layer__height: 8px;
+$hamburger__width: 36px;
+$hamburger__layer__height: 6px;
 $hamburger__layer__gap: 5px;
 $hamburger__colour: #222;
 
@@ -82,16 +84,22 @@ $hamburger__colour: #222;
 
 
 .expand-icon {
+    --size: 4vw;
     height: 32px;
     width: 32px;
+    height: var(--size);
+    width: var(--size);
     position: relative;
     display: inline-block;
     margin-left: 0.8rem;
+    
   }
   .expand-icon::before, .expand-icon::after {
     content: " ";
     width: 32px;
     height: 6px;
+    width: var(--size);
+    height: calc(var(--size) / 5.5);
     background-color: currentColor;
     display: block;
     position: absolute;
@@ -131,8 +139,8 @@ $hamburger__colour: #222;
 
     visibility: hidden;
     opacity: 0;
-    transition: all 0.5s ease;
-    will-change: transform, opacity, background-color;
+    // transition: all 0.5s ease;
+    // will-change: transform, opacity, background-color;
 
     &--visible {
         visibility: visible;

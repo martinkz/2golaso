@@ -2,9 +2,9 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-a11y-toggle]"), fu
     item.addEventListener('click', function(e){
         e.preventDefault();
         this.querySelector('.expand-icon').classList.toggle('expanded');
-        // setTimeout(function(el){
-        //     el.querySelector('h2').scrollIntoView({behavior: "smooth"});
-        // }, 280, this);
+        setTimeout(function(el){
+            window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - document.querySelector('.main-nav').offsetHeight - 20);
+        }, 0, this);
     });
 });
 
