@@ -218,6 +218,10 @@ html, body {
           box-sizing: inherit;
 }
 
+.text-page {
+  padding-bottom: 5vh;
+}
+
 .wrap {
   max-width: 94%;
   margin: 0 auto;
