@@ -85,6 +85,10 @@ $hamburger__colour: #222;
 
 .expand-icon {
     --size: 4vw;
+    @media (max-width: 700px) {
+        // --size: calc(4vw + 10px);
+        --size: 2.4rem;
+    }
     height: 32px;
     width: 32px;
     height: var(--size);

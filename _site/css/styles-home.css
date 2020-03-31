@@ -98,6 +98,12 @@
   margin-left: 0.8rem;
 }
 
+@media (max-width: 700px) {
+  .expand-icon {
+    --size: 2.4rem;
+  }
+}
+
 .expand-icon::before, .expand-icon::after {
   content: " ";
   width: 32px;

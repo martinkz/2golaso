@@ -57,13 +57,16 @@ html, body {
 
 .main-title {
     margin: 2rem 0 2rem;
+    @media (max-height: 550px) {
+        margin-top: 12vmax;
+    }
     line-height: 1.2;
     text-transform: uppercase;
 
     font-size: 2.2rem;
     @include poly-fluid-sizing('font-size', (320px: 32px, 5000px: 220px));
     
-    height: 90vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,10 +115,11 @@ article.item {
         text-decoration: none;
         text-transform: uppercase;
         color: #555;
-        font-size: 1.8rem;
+        // font-size: 1.8rem;
         transition: all 0.25s ease;
 
         h2 {
+            @include poly-fluid-sizing('font-size', (320px: 32px, 5000px: 220px));
             margin: 1.5rem 0;
             display: flex;
             justify-content: flex-start;
