@@ -26,14 +26,10 @@ html, body {
     box-sizing: inherit;
 }
 
-.text-page {
-    padding-bottom: 5vh;
-}
-
 .wrap {
     max-width: $page-width;
     margin: 0 auto;
-    padding: 0 8vw 12vw;
+    padding: 0 8vw 0;
     color: #222222;
 }
 
@@ -46,7 +42,7 @@ html, body {
     max-width: 94%;
     top: 0;
     left: 3%;
-    padding: 1rem 8vw 0.5rem;
+    padding: 3vh 8vw 0.5rem;
     z-index: 100;
 }
 
@@ -154,11 +150,7 @@ article.item {
 }
 
 .footer-page {
-    margin-top: 20px;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0;
+    margin-top: 5vw;
 }
 
 // Footer links
