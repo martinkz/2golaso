@@ -32,6 +32,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  pointer-events: all;
   width: 40px;
   height: 36px;
   z-index: 1;
@@ -248,11 +249,13 @@ html, body {
   left: 3%;
   padding: 3vh 8vw 0.5rem;
   z-index: 100;
+  pointer-events: none;
 }
 
 .main-logo-fluid {
   width: 36px;
   height: auto;
+  pointer-events: all;
 }
 
 @media (min-width: 200px) {

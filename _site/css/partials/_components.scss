@@ -32,6 +32,7 @@ $hamburger__colour: #222;
     background: none;
     border: none;
     cursor: pointer;
+    pointer-events: all;
 
     width: $hamburger__height;
     height: $hamburger__width;
